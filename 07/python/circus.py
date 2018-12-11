@@ -16,4 +16,20 @@ for t in towers:
     for a in towers[t][1]:
         abos.append(a)
 
-print filter(lambda x: x not in abos, ts)
+root = filter(lambda x: x not in abos, ts)[0]
+print root
+
+def weight(tower):
+    tw = tower[0]
+    ws = []
+    for ab in tower[1]:
+        w = weight(towers[ab])
+        tw += w
+        ws.append(w)
+    if len(set(ws)) > 1:
+        print (tower[1], ws)
+    return tw
+
+weight(towers[root])
+
+print towers["tulwp"]
